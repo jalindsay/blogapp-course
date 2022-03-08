@@ -1,0 +1,16 @@
+{
+  "resourceName": "postimages",
+  "policyUUID": "ef2fcadb",
+  "bucketName": "blogappcoursecadcb1baebc447e6b99c5318bcf8f570",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

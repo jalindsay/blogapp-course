@@ -4,12 +4,15 @@ import { useEffect, useState } from 'react'
 import { postsByUsername } from '../src/graphql/queries'
 import Moment from 'moment'
 import { deletePost as deletePostMutation } from '../src/graphql/mutations'
+import Image from 'next/image'
 
 export default function MyPosts() {
     const [posts, setPosts] = useState([])
+
     useEffect(() => {
         fetchPosts()
     }, [])
+
     async function fetchPosts() {
         const { username } = await Auth.currentAuthenticatedUser()
         const postData = await API.graphql({
