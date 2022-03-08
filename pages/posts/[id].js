@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { API, Storage } from 'aws-amplify'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -14,7 +15,7 @@ export default function Post({ post }) {
 
     useEffect(() => {
         updateCoverImage()
-    }, [])
+    })
 
     async function updateCoverImage() {
         if (post.coverImage) {
@@ -33,7 +34,9 @@ export default function Post({ post }) {
             <h1 className="text-5xl mt-4 font-semibold tracing-wide">
                 {post.title}
             </h1>
-            {coverImage && <img src={coverImage} className="mt4" />}
+            {coverImage && (
+                <img src={coverImage} className="mt4" alt="coverImage" />
+            )}
             <p className="text-sm font-light my-4">By {post.username}</p>
             <div className="mt-8">
                 <ReactMarkDown className="prose">{post.content}</ReactMarkDown>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Auth, API, Storage } from 'aws-amplify'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -49,13 +50,13 @@ export default function MyPosts() {
             {posts.map((post, index) => (
                 <div
                     key={index}
-                    className="py-8 px-8 max-w-xxl mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-1 sm:flex 
-          sm:items-center sm:space-y-0 sm:space-x-6 mb-2"
+                    className="py-8 px-8 max-w-xxl mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-1 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 mb-2"
                 >
                     {post.coverImage && (
                         <img
                             className="w-36 h-36 bg-contain bg-center rounded-full sm:mx-0 sm:shrink-0"
                             src={post.coverImage}
+                            alt={post.title + ' image'}
                         />
                     )}
                     <div className="text-center space-y-2 sm:text-left">
@@ -70,14 +71,10 @@ export default function MyPosts() {
                                 )}
                             </p>
                         </div>
-                        <div
-                            className="sm:py-4 sm:flex 
-        sm:items-center sm:space-y-0 sm:space-x-1"
-                        >
+                        <div className="sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-1">
                             <p
-                                className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
-    hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
-    focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                                className="px-4 
+                                py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                             >
                                 <Link href={`/edit-post/${post.id}`}>
                                     Edit Post
@@ -86,8 +83,8 @@ export default function MyPosts() {
 
                             <p
                                 className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 
-    hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
-    focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                                            hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none 
+                                            focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                             >
                                 <Link href={`/posts/${post.id}`}>
                                     View Post

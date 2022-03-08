@@ -68,10 +68,23 @@ function CreatePost() {
                 name="title"
                 placeholder="Title"
                 value={post.title}
-                className="border-b pb-2 text-lg my-4
-                focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+                className="border-b 
+                        pb-2 
+                        text-lg
+                        my-4
+                        focus:outline-none
+                        w-full font-light
+                        text-gray-500
+                        placeholder-gray-500 
+                        y-2"
             />
-            {image && <img src={URL.createObjectURL(image)} className="my-4" />}
+            {image && (
+                <img
+                    src={URL.createObjectURL(image)}
+                    className="my-4"
+                    alt="coverImage"
+                />
+            )}
             <SimpleMDE
                 value={post.content}
                 onChange={(value) => setPost({ ...post, content: value })}
