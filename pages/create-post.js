@@ -6,7 +6,6 @@ import { v4 as uuid } from 'uuid'
 import { createPost } from '../src/graphql/mutations'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
     ssr: false,

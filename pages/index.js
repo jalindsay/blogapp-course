@@ -1,15 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from 'react'
-import { API, Storage } from 'aws-amplify'
-import { listPosts } from '../src/graphql/queries'
+import { API, graphqlOperation, Storage } from 'aws-amplify'
+import { listPosts } from './../src/graphql/queries'
 import Link from 'next/link'
+import { newOnCreatePost } from './../src/graphql/subscriptions'
 
 export default function Home() {
     const [posts, setPosts] = useState([])
+    const [post, setPost] = useState([])
+
+    let subOncreate
+
+    function setUpSubscriptions() {
+        subOncreate = API.graphql(graphqlOperation(newOnCreatePost)).subscribe({
+            next: (postData) => {
+                console.log(postData.value)
+                setPost(postData)
+            },
+        })
+    }
+    useEffect(() => {
+        setUpSubscriptions()
+        return () => {
+            subOncreate.unsubscribe()
+        }
+    })
 
     useEffect(() => {
         fetchPosts()
-    })
+    }, [post])
 
     async function fetchPosts() {
         const postData = await API.graphql({
@@ -41,7 +60,7 @@ export default function Home() {
                             <img
                                 src={post.coverImage}
                                 className="w-36 h-36 bg-contain bg-center rounded-full sm:mx-0 sm:shrink-0"
-                                alt={post.title + ' image'}
+                                alt="image"
                             />
                         )}
                         <div className="cursor-pointer mt-2">

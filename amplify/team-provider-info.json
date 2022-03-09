@@ -15,6 +15,12 @@
       "auth": {
         "blogappcoursef9503ea0": {},
         "true": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2s8fhiwpwyvvt",
+          "type": "manual"
+        }
       }
     }
   }
