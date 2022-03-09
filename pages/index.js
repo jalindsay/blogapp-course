@@ -31,8 +31,9 @@ export default function Home() {
     return (
         <div>
             <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-8">
-                My Posts
+                Posts
             </h1>
+
             {posts.map((post, index) => (
                 <Link key={index} href={`/posts/${post.id}`} passHref>
                     <div className="my-6 pb-6 border-b border-gray-300">
@@ -43,10 +44,30 @@ export default function Home() {
                                 alt={post.title + ' image'}
                             />
                         )}
-                        <h2 className="text-xl font-semibold">{post.title}</h2>
-                        <p className="text-gray-500 mt-2">
-                            Author: {post.username}
-                        </p>
+                        <div className="cursor-pointer mt-2">
+                            <h2 className="text-xl font-semibold" key={index}>
+                                {post.title}
+                            </h2>
+                            <p className="text-gray-500 mt-2">
+                                Author: {post.username}
+                            </p>
+                            {post.comments.items.length > 0 &&
+                                post.comments.items.map((comment, index) => (
+                                    <div
+                                        key={index}
+                                        className="py-8 px-8 max-w-xl mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-1 sm:flex my-6mx-12 sm:items-center sm:space-y-0 sm:space-x-6 mb-2"
+                                    >
+                                        <div>
+                                            <p className="text-gray-500 mt-2">
+                                                {comment.message}
+                                            </p>
+                                            <p className="text-gray-200 mt-1">
+                                                {comment.createdBy}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
                     </div>
                 </Link>
             ))}
